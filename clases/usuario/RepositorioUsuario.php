@@ -27,8 +27,8 @@ class RepositorioUsuario extends Repositorio
         $q = "INSERT INTO usuarios (usuario, nombre, apellido, clave) ";
         $q .= "VALUES (?, ?, ?, ?)";
         $query = self::$conexion->prepare($q);
-
         $query->bind_param(
+            //Indico el tipo de parámetro de que voy a mandar
             "ssss",
             $u->getUsuario(),
             $u->getNombre(),
