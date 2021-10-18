@@ -1,15 +1,9 @@
 <?php
-require_once 'clase/repostorio.php';
+require_once './clases/Repositorio.php';
 require_once 'Usuario.php';
 
 class RepositorioUsuario extends Repositorio
 {
-    private static $conexion = null;
-
-    public function __construct()
-    {
-        self::$conexion = parent::__construct();
-    }
 
     public function login($nombre_usuario, $clave)
     {

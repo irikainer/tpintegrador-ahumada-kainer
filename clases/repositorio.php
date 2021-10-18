@@ -3,7 +3,7 @@ require_once '.env.php';
 
 class Repositorio
 {
-    private static $conexion = null;
+    protected static $conexion = null;
 
     public function __construct()
     {
@@ -20,9 +20,7 @@ class Repositorio
                 self::$conexion = null;
                 die($error);
             }
-            echo "Conexión exitosa";
             self::$conexion->set_charset('utf8');
-            return self::$conexion;
         }
     }
 }
