@@ -1,0 +1,57 @@
+.page-title {
+    width: 100%;
+    height: 8rem;
+    padding-top: 4rem;
+    background-color: #e6f8e98e;
+}
+
+.page-title h1 {
+    color: #1B4332;
+}
+
+.login-box {
+    width: 40rem;
+    margin: auto;
+}
+
+.alert-message {
+    margin-bottom: 0;
+}
+
+.main-btn{
+  background-color: #1B4332;
+  color: white;
+}
+
+.main-btn:hover, .btn-container a:hover{
+    color: white;
+    background-color: #081C15;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.btn-icon {
+    width: 1.2rem;
+}
+
+.icon-edit {
+    filter: invert(21%) sepia(41%) saturate(521%) hue-rotate(103deg) brightness(94%) contrast(95%);
+}
+
+.icon-edit:hover {
+    filter: invert(6%) sepia(33%) saturate(1793%) hue-rotate(119deg) brightness(91%) contrast(94%);
+}
+
+.icon-trash {
+    filter: invert(11%) sepia(69%) saturate(6284%) hue-rotate(357deg) brightness(100%) contrast(113%);
+}
+
+.icon-trash:hover {
+    filter: invert(12%) sepia(71%) saturate(2425%) hue-rotate(345deg) brightness(99%) contrast(126%);
+}
+
+th {
+    background-color: #e6f8e98e !important;
+}
