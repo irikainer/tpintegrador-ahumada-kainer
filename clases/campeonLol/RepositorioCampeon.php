@@ -37,8 +37,7 @@ class RepositorioCampeon extends Repositorio
         if ($query->execute()) {
             if ($query->fetch()) {
                 $repoUsuario = new RepositorioUsuario();
-                $usuario = $repoUsuario->getOne($idUsuario);
-                return new Campeon($nombre, $linea, $id, $calificacion, $tipo, $usuario);
+                return new Campeon($nombre, $linea, $id, $calificacion, $tipo, $idUsuario);
             }
         }
         return false;
@@ -76,10 +75,13 @@ class RepositorioCampeon extends Repositorio
         return ($query->execute());
     }
 
-    public function editar($id, $nuevaLinea, $nuevaCalificacion){
-        $q = "UPDATE campeones SET (linea = ?, calificacion = ?) WHERE id = ?";
+    public function editar(Campeon $campeon)
+    {
+        $id = $campeon->getId();
+        $calificacion = $campeon->getCalificacion();
+        $q = "UPDATE campeones SET calificacion = ? WHERE id = ?";
         $query = self::$conexion->prepare($q);
-        $query->bind_param("sii", $nuevaLinea, $nuevaCalificacion, $id);
+        $query->bind_param("ii", $calificacion, $id);
 
         return ($query->execute());
     }

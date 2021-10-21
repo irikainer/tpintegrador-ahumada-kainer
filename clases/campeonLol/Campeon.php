@@ -8,16 +8,16 @@ class Campeon
     protected $nombreCampeon;
     protected $lineaCampeon;
     protected $tipoCampeon;
-    protected $usuario;
+    protected $idUsuario;
 
-    public function __construct($nombre, $linea, $id = null, $calificacion, $tipo, Usuario $usuario)
+    public function __construct($nombre, $linea, $id = null, $calificacion, $tipo, $idUsuario)
     {
         $this->calificacion = $calificacion;
         $this->idCampeon = $id;
         $this->nombreCampeon = $nombre;
         $this->lineaCampeon = $linea;
         $this->tipoCampeon = $tipo;
-        $this->usuario = $usuario;
+        $this->idUsuario = $idUsuario;
     }
 
     public function setId($id)
@@ -57,7 +57,12 @@ class Campeon
 
     public function getIdUsuario()
     {
-        return $this->usuario->getId();
+        return $this->idUsuario;
     }
-    
+
+    public function setCalificacion($nuevaCalificacion)
+    {
+        $this->calificacion = $nuevaCalificacion;
+        return true;
+    }
 }
