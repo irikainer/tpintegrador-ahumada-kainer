@@ -55,3 +55,16 @@
 th {
     background-color: #e6f8e98e !important;
 }
+
+#editar-campeon {
+    display: none;
+}
+
+#editar-campeon input {
+    width: 20rem;
+    margin: auto;
+}
+
+#editar-campeon h5 {
+    color: #1B4332;
+}
