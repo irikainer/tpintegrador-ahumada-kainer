@@ -3,12 +3,6 @@ require_once 'clases/usuario/Usuario.php';
 
 class Campeon
 {
-    //Create
-    //Edit
-    //Delete
-    //GetOne
-    //GetAll
-
     protected $idCampeon;
     protected $calificacion;
     protected $nombreCampeon;
@@ -65,4 +59,5 @@ class Campeon
     {
         return $this->usuario->getId();
     }
+    
 }
