@@ -58,11 +58,11 @@ if (isset($_SESSION['usuario'])) {
                     $id = $unCampeon->getId();
                     echo '<tr>';
                     echo "<td>$id</td>";
-                    echo "<td id='nombre-$id'>" . $unCampeon->getNombreCampeon() . "</td>";
+                    echo "<td>" . $unCampeon->getNombreCampeon() . "</td>";
                     echo "<td id='linea-$id'>" . $unCampeon->getLineaCampeon() . "</td>";
-                    echo "<td id='tipo-$id'>" . $unCampeon->getTipoCampeon() . "</td>";
+                    echo "<td>" . $unCampeon->getTipoCampeon() . "</td>";
                     echo "<td id='calificacion-$id'>" . $unCampeon->getCalificacion() . "</td>";
-                    echo "<td><button type='button' onclick='editar($id)' class='btn btn-outline'>
+                    echo "<td><button type='button' onclick='mostrar($id)' class='btn btn-outline'>
                     <img src='assets/pencil-square.svg' class='btn-icon icon-edit'></button></td>";
                     echo "<td><a href='eliminar.php?id=$id' class='btn'><img src='assets/trash.svg' class='btn-icon icon-trash'></a></td>";
                     echo '</tr>';
@@ -70,16 +70,68 @@ if (isset($_SESSION['usuario'])) {
             }
             ?>
         </table>
+        <br>
 
-        <br><br>
+        <div id="editar-campeon">
+            <h5>Cambiar calificación</h5>
+            <input type="hidden" id="id">
+            <input id="calificacion" type="number" class="form-control" placeholder="Calificación del 1 a 10"><br>
+            <div class="btn-container">
+                <button type="button" class="btn main-btn" onclick='editar()'>Guardar</button>
+            </div>
+            <br>
+        </div>
+
+        <br>
         <div class="btn-container">
             <a class="btn main-btn" href="campeonForm.php" role="button">Añadir nuevo campeón</a>
-            <a class="btn main-btn" href="#" role="button">Ver estadísticas</a>
+            <a class="btn main-btn" href="estadisticas-campeones.php" role="button">Ver estadísticas</a>
         </div>
-        <br><br>
+        <br>
 
         <p><a href="logout.php">Cerrar sesión</a></p>
     </div>
+
+    <script>
+        function mostrar($id) {
+            var x = document.getElementById("editar-campeon");
+            x.style.display = "block";
+            document.querySelector('#id').value = $id;
+        }
+
+        function editar() {
+            var id = document.querySelector('#id').value;
+            var calificacion = document.querySelector('#calificacion').value;
+
+            var cadena = "id=" + id + "&calificacion=" + calificacion;
+
+            var solicitud = new XMLHttpRequest();
+
+            solicitud.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var respuesta = JSON.parse(this.responseText);
+                    var identificadorCalificacion = "#calificacion-" + respuesta.id_campeon;
+                    var celdaCalificacion = document.querySelector(identificadorCalificacion);
+
+                    if (respuesta.resultado == "OK") {
+                        celdaCalificacion.innerHTML = respuesta.calificacion;
+                    } else {
+                        alert(respuesta.resultado);
+                    }
+
+                    celdaCalificacion.scrollIntoView();
+
+                    var x = document.getElementById("editar-campeon");
+                    x.style.display = "none";
+                    var inputCalificacion = document.getElementById("calificacion");
+                    inputCalificacion.value = '';
+                }
+            }
+            solicitud.open("POST", "editarCampeon.php", true);
+            solicitud.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            solicitud.send(cadena);
+        }
+    </script>
 </body>
 
 </html>

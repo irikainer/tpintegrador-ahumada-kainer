@@ -65,6 +65,6 @@ th {
     margin: auto;
 }
 
-#editar-campeon h5 {
+#editar-campeon h5, .section-title {
     color: #1B4332;
 }
