@@ -3,12 +3,12 @@ require_once 'clases/usuario/Usuario.php';
 
 class Campeon
 {
-    protected $idCampeon;
-    protected $calificacion;
-    protected $nombreCampeon;
-    protected $lineaCampeon;
-    protected $tipoCampeon;
-    protected $idUsuario;
+    public $idCampeon;
+    public $calificacion;
+    public $nombreCampeon;
+    public $lineaCampeon;
+    public $tipoCampeon;
+    public $idUsuario;
 
     public function __construct($nombre, $linea, $id = null, $calificacion, $tipo, $idUsuario)
     {
